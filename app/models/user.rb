@@ -4,4 +4,7 @@ class User < ApplicationRecord
   has_many :active_teams, through: :memberships, source: :team
   has_secure_password
   validates :email, presence: true, uniqueness: true
+
+  def method_name
+  end
 end
