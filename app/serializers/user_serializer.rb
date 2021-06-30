@@ -1,3 +1,3 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :summoner_name, :region, :rank_data, :mastery_data
+  attributes :summoner_name, :region, :solo_queue_rank, :flex_queue_rank
 end
