@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_22_202314) do
+ActiveRecord::Schema.define(version: 2021_07_01_175820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_202314) do
     t.integer "user_id"
     t.integer "team_id"
     t.string "primary_role"
-    t.string "seecondary_role"
+    t.string "secondary_role"
     t.boolean "fill"
     t.string "assigned_role"
     t.datetime "created_at", precision: 6, null: false

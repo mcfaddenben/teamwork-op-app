@@ -18,7 +18,7 @@ class TeamsController < ApplicationController
     if team.save
       render json: team
     else
-      render json: { errors: team.errors.full_mesages }, status: :bad_request
+      render json: { errors: team.errors.full_messages }, status: :bad_request
     end
   end
 
