@@ -1,3 +1,3 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :summoner_name, :region, :solo_queue_rank, :flex_queue_rank, :champ_mastery
+  attributes :id, :email, :summoner_name, :bio, :region, :champ_mastery, :rank, :teams, :active_teams
 end

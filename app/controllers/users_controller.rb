@@ -5,10 +5,10 @@ class UsersController < ApplicationController
       summoner_name: params[:summoner_name],
       bio: params[:bio],
       password: params[:password],
-      password_confirm: params[:password_confirm],
+      password_confirmation: params[:password_confirmation],
     )
     if user.save
-      render json: { message: "User account sucessfully created" }, status: :created
+      render json: user.as_json, status: :created
     else
       render json: { errors: errors.user.full_messages }, status: :bad_request
     end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     user.summoner_id = params[:summoner_id] || user.summoner_id
     user.bio = params[:bio] || user.bio
     if user.save
-      render json: user
+      render json: user.as_json, status: :saved
     else
       render json: { errors: user.errors.full_messages }
     end

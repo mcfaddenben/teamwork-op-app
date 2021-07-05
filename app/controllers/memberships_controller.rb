@@ -9,9 +9,9 @@ class MembershipsController < ApplicationController
       assigned_role: params[:assigned_role],
     )
     if membership.save
-      render json: { message: "membership created" }
+      render json: membership.as_json, status: :created
     else
-      render json: { message: "unable to save membership" }, status: :bad_request
+      render json: { errors: errors.membership.full_messages }, status: :bad_request
     end
   end
 
@@ -23,6 +23,11 @@ class MembershipsController < ApplicationController
     membership.secondary_role = params[:secondary_role] || membership.secondary_role
     membership.fill = params[:fill] || membership.fill
     membership.assigned_role = params[:assigned_role] || membership.assigned_role
+    if membership.save
+      render json: membership.as_json, status: :saved
+    else
+      render json: { errors: membership.errors.full_messages }
+    end
   end
 
   def destroy

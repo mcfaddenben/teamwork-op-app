@@ -32,6 +32,11 @@ class TeamsController < ApplicationController
     team.name = params[:name] || team.name
     team.private = params[:private] || team.private
     team.about = params[:about] || team.about
+    if team.save
+      render json: team.as_json, status: :saved
+    else
+      render json: { errors: team.errors.full_messages }
+    end
   end
 
   def destroy

@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :teams
-  has_many :memberships
+  has_many :teams, dependent: :destroy
+  has_many :memberships, dependent: :destroy
   has_many :active_teams, through: :memberships, source: :team
   has_secure_password
   validates :email, presence: true, uniqueness: true
@@ -22,30 +22,24 @@ class User < ApplicationRecord
 
   def champ_mastery
     mastery = []
-    i = 0
-    5.times do
-      mastery << mastery_full[i]["championId"]
-      mastery << "Champion Level #{mastery_full[i]["championLevel"]}"
-      i += 1
+    mastery_full[0..4].each do |champ_mastery|
+      mastery << { id: champ_mastery["championId"], level: champ_mastery["championLevel"] }
     end
     return mastery
   end
 
-  def solo_queue_rank
-    response = "#{rank_data[0]["tier"]}, #{rank_data[0]["rank"]}"
-    if response == nil
-      return "summoner is unranked in solo queue"
-    else
-      return response
+  def rank
+    i = 0
+    rank = []
+    while i < rank_data.length
+      queue_rank = { "#{rank_data[i]["queueType"]}" => ["#{rank_data[i]["tier"]}", "#{rank_data[i]["rank"]}"] }
+      rank << queue_rank
+      i += 1
     end
-  end
-
-  def flex_queue_rank
-    response = "#{rank_data[1]["tier"]}, #{rank_data[1]["rank"]}"
-    if response
-      return response
+    if rank.any?
+      return rank
     else
-      return "Unranked in flex queue"
+      return nil
     end
   end
 end
