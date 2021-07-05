@@ -1,3 +1,4 @@
 class MembershipSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :team_id, :primary_role, :secondary_role, :fill, :assigned_role
+  attributes :id, :primary_role, :secondary_role, :fill, :assigned_role
+  belongs_to :user
 end
