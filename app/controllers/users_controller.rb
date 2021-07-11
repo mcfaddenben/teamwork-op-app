@@ -3,8 +3,9 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(
-      email: params[:email],
       summoner_name: params[:summoner_name],
+      region: params[:region],
+      email: params[:email],
       bio: params[:bio],
       password: params[:password],
       password_confirmation: params[:password_confirmation],
@@ -18,7 +19,7 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    render json: user.as_json(except: [:password_digest, :created_at, :updated_at], methods: [:champ_mastery, :rank, :teams, :active_teams])
+    render json: user.as_json(except: [:password_digest, :created_at, :updated_at], methods: [:champ_mastery, :rank_data, :teams, :active_teams])
   end
 
   def update
