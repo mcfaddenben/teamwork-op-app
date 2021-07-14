@@ -6,7 +6,7 @@ class TeamsController < ApplicationController
     # if params[:search_term]
     #   teams = teams.where("name ilike ?", "%#{params[:search_term]}%")
     # end
-    render json: teams, include: "memberships.user"
+    render json: teams #, include: "memberships.user"
   end
 
   def create

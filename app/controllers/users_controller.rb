@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    render json: user.as_json(except: [:password_digest, :created_at, :updated_at], methods: [:champ_mastery, :rank_data, :teams, :active_teams])
+    render json: user.as_json(except: [:password_digest, :created_at, :updated_at], methods: [:champ_mastery, :rank_data, :teams, :active_teams, :summoner_info])
   end
 
   def update
