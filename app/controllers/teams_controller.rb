@@ -14,7 +14,7 @@ class TeamsController < ApplicationController
       name: params[:name],
       about: params[:about],
       user_id: current_user.id,
-      private: params[:private],
+      private: params[:private], default
     )
     if team.save
       render json: team
